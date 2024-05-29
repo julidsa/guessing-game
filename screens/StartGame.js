@@ -1,12 +1,42 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { Alert, StyleSheet, TextInput, View } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
+import SecundaryButton from "../components/SecundaryButton";
+import { useState } from "react";
 
 function StartGameScreen() {
+  const [number, setNumber] = useState("");
+
+  const handleGivenNumber = (enteredGoal) => {
+    setNumber(enteredGoal);
+  };
+
+  const resetNumber = () => {
+    setNumber("");
+  };
+
+  const confirmNumberHandler = () => {
+    const chosenNum = parseInt(number);
+
+    if (isNaN(chosenNum) || chosenNum <= 0 || chosenNum > 99) {
+      Alert.alert("Invalid number!", "Enter a number between 1 and 99", [
+        { text: "Got it!", style: "destructive", onPress: resetNumber() },
+      ]);
+    }
+  };
+
   return (
     <View style={styles.inputContainer}>
-      <TextInput style={styles.input} maxLength={2} keyboardType="number-pad" />
-      <PrimaryButton>Reset</PrimaryButton>
-      <PrimaryButton>Confirm</PrimaryButton>
+      <TextInput
+        style={styles.input}
+        maxLength={2}
+        keyboardType="number-pad"
+        onChangeText={handleGivenNumber}
+        value={number}
+      />
+      <View style={styles.buttonsContainer}>
+        <SecundaryButton onPress={resetNumber}>Reset</SecundaryButton>
+        <PrimaryButton onPress={confirmNumberHandler}>Confirm</PrimaryButton>
+      </View>
     </View>
   );
 }
@@ -14,7 +44,18 @@ function StartGameScreen() {
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
+  view: {
+    alignContent: "center",
+  },
+
+  buttonsContainer: {
+    flexDirection: "row",
+    gap: 25,
+  },
+
   inputContainer: {
+    justifyContent: "center",
+    alignItems: "center",
     padding: 16,
     marginTop: 100,
     marginHorizontal: 24,
@@ -24,6 +65,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
     shadowOpacity: 0.25,
+    borderRadius: 15,
   },
 
   input: {
@@ -32,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     alignContent: "center",
     borderBottomColor: "#ffaaa5",
-    color: "#698474",
+    color: "#3f4f45",
     borderBottomWidth: 1,
     marginVertical: 10,
     fontWeight: "bold",

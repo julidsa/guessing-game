@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
-function PrimaryButton({ children, onPress }) {
+function SecundaryButton({ children, onPress }) {
   return (
     <View style={styles.buttonOuterContainer}>
       <Pressable
@@ -18,7 +18,7 @@ function PrimaryButton({ children, onPress }) {
   );
 }
 
-export default PrimaryButton;
+export default SecundaryButton;
 
 const styles = StyleSheet.create({
   buttonOuterContainer: {
@@ -27,13 +27,8 @@ const styles = StyleSheet.create({
   },
 
   buttonInnerContainer: {
-    borderRadius: 8,
-    backgroundColor: "#ffaaa5",
-    borderColor: "black",
-    borderWidth: 1,
-    borderStyle: "solid",
     justifyContent: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     paddingVertical: 10,
   },
 
@@ -41,6 +36,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 16,
+    color: "#E56E66",
+    textDecorationLine: "underline",
   },
 
   pressedIOS: {
