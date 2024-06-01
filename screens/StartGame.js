@@ -1,9 +1,10 @@
 import { Alert, StyleSheet, TextInput, View } from "react-native";
-import PrimaryButton from "../components/PrimaryButton";
-import SecundaryButton from "../components/SecundaryButton";
+import PrimaryButton from "../components/ui/PrimaryButton";
+import SecundaryButton from "../components/ui/SecundaryButton";
 import { useState } from "react";
+import Colors from "../constants/color";
 
-function StartGameScreen() {
+function StartGameScreen({ onPickNumber }) {
   const [number, setNumber] = useState("");
 
   const handleGivenNumber = (enteredGoal) => {
@@ -22,6 +23,8 @@ function StartGameScreen() {
         { text: "Got it!", style: "destructive", onPress: resetNumber() },
       ]);
     }
+
+    onPickNumber(chosenNum);
   };
 
   return (
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginTop: 100,
     marginHorizontal: 24,
-    backgroundColor: "#fcf8f3",
+    backgroundColor: Colors.primaryWhite,
     elevation: 7,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
     width: 50,
     fontSize: 26,
     alignContent: "center",
-    borderBottomColor: "#ffaaa5",
+    borderBottomColor: Colors.primary,
     color: "#3f4f45",
     borderBottomWidth: 1,
     marginVertical: 10,
