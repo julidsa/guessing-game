@@ -1,8 +1,9 @@
-import { Alert, StyleSheet, TextInput, View } from "react-native";
+import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
-import SecundaryButton from "../components/ui/SecundaryButton";
+import SecondaryButton from "../components/ui/SecondaryButton";
 import { useState } from "react";
 import Colors from "../constants/color";
+import Title from "../components/Title";
 
 function StartGameScreen({ onPickNumber }) {
   const [number, setNumber] = useState("");
@@ -28,17 +29,21 @@ function StartGameScreen({ onPickNumber }) {
   };
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.input}
-        maxLength={2}
-        keyboardType="number-pad"
-        onChangeText={handleGivenNumber}
-        value={number}
-      />
-      <View style={styles.buttonsContainer}>
-        <SecundaryButton onPress={resetNumber}>Reset</SecundaryButton>
-        <PrimaryButton onPress={confirmNumberHandler}>Confirm</PrimaryButton>
+    <View style={styles.rootContainer}>
+      <Title style={styles.title}>Guess my Number</Title>
+      <View style={styles.inputContainer}>
+        <Text style={styles.text}>Digite um número: </Text>
+        <TextInput
+          style={styles.input}
+          maxLength={2}
+          keyboardType="number-pad"
+          onChangeText={handleGivenNumber}
+          value={number}
+        />
+        <View style={styles.buttonsContainer}>
+          <SecondaryButton onPress={resetNumber}>Reset</SecondaryButton>
+          <PrimaryButton onPress={confirmNumberHandler}>Confirm</PrimaryButton>
+        </View>
       </View>
     </View>
   );
@@ -47,8 +52,20 @@ function StartGameScreen({ onPickNumber }) {
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
-  view: {
-    alignContent: "center",
+  rootContainer: {
+    flex: 1,
+    marginTop: 100,
+  },
+
+  title: {
+    marginHorizontal: 100,
+    fontSize: 40,
+    color: Colors.primaryWhite,
+  },
+
+  text: {
+    fontWeight: "bold",
+    color: Colors.primary800,
   },
 
   buttonsContainer: {
@@ -60,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    marginTop: 100,
+    marginTop: 30,
     marginHorizontal: 24,
     backgroundColor: Colors.primaryWhite,
     elevation: 7,

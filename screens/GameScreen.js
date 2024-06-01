@@ -1,15 +1,17 @@
-import { TextInput, View, Text, StyleSheet, Alert } from "react-native";
-import Title from "../components/Title";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import { useEffect, useState } from "react";
+
+import Title from "../components/Title";
 import GuessedNumber from "../components/game/GuessedNumber";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Colors from "../constants/color";
+import { AntDesign } from "@expo/vector-icons";
 
 const generateRandomNumber = (min, max, exclude) => {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
 
   if (rndNum === exclude) {
-    return generateRandomBetween(min, max, exclude);
+    return generateRandomNumber(min, max, exclude);
   } else {
     return rndNum;
   }
@@ -72,10 +74,10 @@ function GameScreen({ userNumber, onGameOver }) {
         </View>
         <View style={styles.buttonsContainer}>
           <PrimaryButton onPress={() => nextGuessHandler("lower")}>
-            -
+            <AntDesign name="minus" size={18} color="black" />
           </PrimaryButton>
           <PrimaryButton onPress={() => nextGuessHandler("higher")}>
-            +
+            <AntDesign name="plus" size={18} color="black" />
           </PrimaryButton>
         </View>
       </View>
@@ -102,10 +104,10 @@ const styles = StyleSheet.create({
   },
 
   text: {
+    fontFamily: "poppins-bold",
     fontSize: 18,
     paddingBottom: 10,
     color: Colors.primaryWhite,
-    fontWeight: "bold",
   },
 
   buttonsContainer: {

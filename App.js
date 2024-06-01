@@ -1,6 +1,8 @@
 import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 import StartGameScreen from "./screens/StartGame";
 import GameScreen from "./screens/GameScreen";
@@ -10,6 +12,15 @@ import GameOverScreen from "./screens/GameOver";
 export default function App() {
   const [userNumber, setUserNumber] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false);
+
+  const [fontsLoaded] = useFonts({
+    "poppins-bold": require("./assets/fonts/Poppins-Bold.ttf"),
+    "poppins-regular": require("./assets/fonts/Poppins-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
@@ -28,10 +39,8 @@ export default function App() {
   }
 
   if (isGameOver && userNumber) {
-    screen = <GameOverScreen />;
+    screen = <GameOverScreen onGameOver={setIsGameOver} />;
   }
-
-  //find a way to render screen dinamically
 
   return (
     <LinearGradient

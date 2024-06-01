@@ -21,9 +21,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
   number: {
+    fontFamily: "poppins-bold",
     fontSize: 30,
-    fontWeight: "bold",
     color: Colors.primary800,
   },
 });

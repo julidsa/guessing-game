@@ -1,18 +1,17 @@
 import { Text, StyleSheet } from "react-native";
 import Colors from "../constants/color";
 
-function Title({ children }) {
-  return <Text style={styles.title}>{children}</Text>;
+function Title({ children, style }) {
+  return <Text style={[styles.title, style]}>{children}</Text>;
 }
 
 export default Title;
 
 const styles = StyleSheet.create({
   title: {
+    fontFamily: "poppins-bold",
     fontSize: 28,
-    fontWeight: "bold",
     color: Colors.primaryWhite,
     textAlign: "center",
-    padding: 10,
   },
 });

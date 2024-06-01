@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import Colors from "../../constants/color";
 
-function SecundaryButton({ children, onPress }) {
+function SecondaryButton({ children, onPress }) {
   return (
     <View style={styles.buttonOuterContainer}>
       <Pressable
@@ -19,7 +19,7 @@ function SecundaryButton({ children, onPress }) {
   );
 }
 
-export default SecundaryButton;
+export default SecondaryButton;
 
 const styles = StyleSheet.create({
   buttonOuterContainer: {
