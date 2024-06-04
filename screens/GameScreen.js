@@ -29,8 +29,6 @@ function GameScreen({ userNumber, onGameOver }) {
     console.log("De primeira!!!");
   }
 
-  console.log(userNumber === currentGuess);
-
   useEffect(() => {
     if (currentGuess === userNumber) {
       onGameOver();
@@ -53,7 +51,6 @@ function GameScreen({ userNumber, onGameOver }) {
     } else {
       minBoundary = currentGuess + 1;
     }
-    console.log(maxBoundary, minBoundary, currentGuess);
 
     const newRandomNumber = generateRandomNumber(
       minBoundary,
